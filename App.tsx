@@ -3,165 +3,14 @@ import {View, Text, Image, StyleSheet, useColorScheme} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import LinearGradient from 'react-native-linear-gradient';
 import WelcomeScreen from './Screens/Welcome/WelcomeScreen';
+import HomeScreen from './Screens/Home/Home';
+import Transactions from './Screens/Transactions/Transactions';
+import AddExpenses from './Screens/Add/AddExpenses';
+import Statistics from './Screens/Statistics/Statistics';
+import Profile from './Screens/Profile/Profile';
 
 const Tab = createBottomTabNavigator();
-
-const days = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-];
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-const date = new Date();
-
-const getFormattedDate = () => {
-  const days = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
-  const date = new Date();
-  const dayName = days[date.getDay()]; // Get the name of the day
-  const dayNumber = date.getDate(); // Get the day number
-
-  return `${dayName} ${dayNumber}`;
-};
-
-//console.log(getFormattedDate());
-
-// const HomeScreen = () => (
-//   <View style={{flex: 1}}>
-//     <View style={{
-//         height: '100%',
-//         overflow: 'hidden',
-//         backgroundColor: '#fff',
-//          // Ensure the border respects the radius
-//       }}>
-//       <LinearGradient
-//         colors={['#FFF6E5', '#F8EDD8','#0000']}
-//         locations={[0, 0.5, 1]}
-//         style={{
-//           borderBottomRightRadius: 100,
-//           borderBottomLeftRadius: 100,
-//           flex:1,
-//           backgroundColor:'#F8EDD8'
-//         }} // Use percentage height directly
-//       >
-//         <View>
-//           <Text>Home Screen</Text>
-//         </View>
-//       </LinearGradient>
-//     </View>
-//     <LinearGradient
-//       colors={['transparent', 'grey']}
-//       style={{height: '60%'}} // Use percentage height directly
-//     >
-//       <View>
-//         <Text>Home Screen</Text>
-//       </View>
-//     </LinearGradient>
-//   </View>
-// );
-
-const HomeScreen = () => (
-  <LinearGradient
-    colors={['transparent', 'grey']}
-    style={{height: '100%', padding: 16, paddingTop: 5}} // Use percentage height directly
-  >
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        height: 70,
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        alignItems: 'center',
-        paddingHorizontal: 9,
-        //backgroundColor: 'red',
-      }}>
-      <View>
-        <Text style={{fontSize: 16, color: 'black'}}>{`${
-          days[date.getDay()]
-        } ${date.getDate()}`}</Text>
-        <Text style={{fontSize: 16, color: 'black'}}>
-          {months[date.getMonth()]}
-        </Text>
-      </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <View
-          style={{
-            //backgroundColor: 'black',
-            borderRadius: 50,
-            borderColor: 'black',
-            borderWidth: 1,
-            height: 32,
-            width: 32,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginRight: 10,
-          }}>
-          <Image
-            source={require('./assets/profile.png')}
-            style={{width: 30, height: 30}}
-          />
-        </View>
-        <Text style={{fontSize: 16, color: 'black'}}>Sekhar Mohanta</Text>
-      </View>
-    </View>
-    {/* <Text>Home Screen</Text> */}
-  </LinearGradient>
-);
-const TransactionsScreen = () => (
-  <View style={styles.screenContainer}>
-    <Text>Transactions Screen</Text>
-  </View>
-);
-
-const AddExpensesScreen = () => (
-  <View style={styles.screenContainer}>
-    <Text>Add Expenses Screen</Text>
-  </View>
-);
-
-const StatisticsScreen = () => (
-  <View style={styles.screenContainer}>
-    <Text>Statistics Screen</Text>
-  </View>
-);
-
-const ProfileScreen = () => (
-  <View style={styles.screenContainer}>
-    <Text>Profile Screen</Text>
-  </View>
-);
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -241,14 +90,14 @@ function App(): React.JSX.Element {
           component={HomeScreen}
           options={{headerShown: false}}
         />
-        <Tab.Screen name="Transactions" component={TransactionsScreen} />
+        <Tab.Screen name="Transactions" component={Transactions} />
         <Tab.Screen
           name="Add Expenses"
-          component={AddExpensesScreen}
+          component={AddExpenses}
           options={{tabBarLabel: () => null}}
         />
-        <Tab.Screen name="Statistics" component={StatisticsScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
+        <Tab.Screen name="Statistics" component={Statistics} />
+        <Tab.Screen name="Profile" component={Profile} />
       </Tab.Navigator>
     </NavigationContainer>
   );
