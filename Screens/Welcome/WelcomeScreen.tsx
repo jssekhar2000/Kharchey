@@ -19,7 +19,7 @@ const WelcomeScreen = ({onFinish = () => {}}) => {
         style={styles.content}>
         <Text
           style={styles.header}>
-          Simple solution for your budget.
+          Simple solution for your budget.   
         </Text>
         <Text
           style={styles.text}>
